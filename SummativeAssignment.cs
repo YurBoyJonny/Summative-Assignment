@@ -40,9 +40,6 @@ namespace Summative_Assignment
         Random generator = new Random();
 
         bool wallHit;
-
-        Color backgroundColor = Color.Red;
-
         public SummativeAssignment()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -132,7 +129,7 @@ namespace Summative_Assignment
         }
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(backgroundColor);
+            GraphicsDevice.Clear(Color.Transparent);
             // TODO: Add your drawing code here
             _spriteBatch.Begin();
 
@@ -157,23 +154,6 @@ namespace Summative_Assignment
                 _spriteBatch.Draw(SpongeBobTexture, SpongeBobRect, Color.White);
                 _spriteBatch.Draw(PatrickTexture, PatrickRect, Color.White);
                 _spriteBatch.Draw(SquidwardTexture, SquidwardRect, Color.White);
-
-                if (PatrickRect.Right >= _graphics.PreferredBackBufferWidth)
-                {
-                    backgroundColor = Color.Green;
-                }
-                else if (PatrickRect.Left < 0)
-                {
-                    backgroundColor = Color.Blue;
-                }
-                else if (SquidwardRect.Bottom > _graphics.PreferredBackBufferHeight)
-                {
-                    backgroundColor = Color.Red;
-                }
-                else if (SquidwardRect.Top < 0)
-                {
-                    backgroundColor = Color.Purple;
-                }
             }
             _spriteBatch.End();
             base.Draw(gameTime);
