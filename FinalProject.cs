@@ -2,9 +2,9 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
-namespace Summative_Assignment
+namespace FinalProject
 {
-    public class SummativeAssignment : Game
+    public class FinalProject : Game
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
@@ -41,8 +41,8 @@ namespace Summative_Assignment
 
         Random generator = new Random();
 
-        bool wallHit;
-        public SummativeAssignment()
+
+        public FinalProject()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -66,7 +66,7 @@ namespace Summative_Assignment
             MrKrabsRect = new Rectangle(300, 10, 100, 100);
             KnifeRect = new Rectangle(300, 10, 100, 100);
 
-            wallHit = false;
+
 
             screen = Screen.Intro;
 
@@ -115,14 +115,13 @@ namespace Summative_Assignment
                 {
                     SpongeBobSpeed.Y *= -1;
                     SpongeBobRect.X = generator.Next(1, 650);
-                    wallHit = true;
                 }
                 PatrickRect.X += (int)PatrickSpeed.X;
                 PatrickRect.Y += (int)PatrickSpeed.Y;
                 if (PatrickRect.Right > _graphics.PreferredBackBufferWidth || PatrickRect.Left < 0)
                 {
                     PatrickSpeed.X *= -1;
-                    wallHit = true;
+
                 }
                 SquidwardRect.X += (int)SquidwardSpeed.X;
                 SquidwardRect.Y += (int)SquidwardSpeed.Y;
