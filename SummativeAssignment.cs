@@ -2,9 +2,9 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
-namespace FinalProject
+namespace SummativeAssignment
 {
-    public class FinalProject : Game
+    public class SummativeAssignment : Game
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
@@ -42,7 +42,7 @@ namespace FinalProject
         Random generator = new Random();
 
 
-        public FinalProject()
+        public SummativeAssignment()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
