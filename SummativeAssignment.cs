@@ -94,8 +94,8 @@ namespace SummativeAssignment
             MrKrabsTexture = Content.Load<Texture2D>("MrKrabs");
             MrKrabsRect = new Rectangle(250, 200, 150, 150);
 
-            KnifeTexture = Content.Load<Texture2D>("Knife");
-            KnifeRect = new Rectangle(250, 200, 50, 50);
+            KnifeTexture = Content.Load<Texture2D>("knife");
+            KnifeRect = new Rectangle(250, 235, 50, 50);
         }
         protected override void Update(GameTime gameTime)
         {
@@ -125,12 +125,7 @@ namespace SummativeAssignment
                 }
                 SquidwardRect.X += (int)SquidwardSpeed.X;
                 SquidwardRect.Y += (int)SquidwardSpeed.Y;
-                //if (SquidwardRect.Left > _graphics.PreferredBackBufferWidth)
-                //{
-                 //   SquidwardSpeed.Y *= -1;
-                   // wallHit = true;
-               // }
-                //if (wallHit == true)
+
             }
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
@@ -144,7 +139,7 @@ namespace SummativeAssignment
             if (screen == Screen.Outro)
             {
                 _spriteBatch.Draw(KrustyKitchenTexture, new Rectangle(0, 0, 800, 500), Color.White);
-                _spriteBatch.DrawString(SpongeBobIntroText, "OUTRO SCREEN", new Vector2(0, 10), Color.Red);
+                _spriteBatch.DrawString(SpongeBobIntroText, "Something's up with Mr. Krabs", new Vector2(0, 10), Color.Red);
                 _spriteBatch.Draw(MrKrabsTexture, MrKrabsRect, Color.White);
                 _spriteBatch.Draw(KnifeTexture, KnifeRect, Color.White);
             }
