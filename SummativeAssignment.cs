@@ -12,6 +12,7 @@ namespace SummativeAssignment
         {
             Intro,
             Main,
+            Main2,
             Outro
         }
         Screen screen;
@@ -58,15 +59,13 @@ namespace SummativeAssignment
             SpongeBobSpeed = new Vector2(0, 100);
 
             PatrickRect = new Rectangle(300, 10, 100, 100);
-            PatrickSpeed = new Vector2(6, 0);
+            PatrickSpeed = new Vector2(2, 0);
 
             SquidwardRect = new Rectangle(300, 10, 100, 100);
             SquidwardSpeed = new Vector2(0, 0);
 
             MrKrabsRect = new Rectangle(300, 10, 100, 100);
             KnifeRect = new Rectangle(300, 10, 100, 100);
-
-
 
             screen = Screen.Intro;
 
@@ -106,7 +105,7 @@ namespace SummativeAssignment
                 if (mouseState.LeftButton == ButtonState.Pressed)
                     screen = Screen.Main;
             }
-            else if (screen == Screen.Main)
+            else if (screen == Screen.Main || screen == Screen.Main2)
             {
                 // TODO: Add your update logic here
                 SpongeBobRect.X += (int)SpongeBobSpeed.X;
@@ -118,13 +117,15 @@ namespace SummativeAssignment
                 }
                 PatrickRect.X += (int)PatrickSpeed.X;
                 PatrickRect.Y += (int)PatrickSpeed.Y;
-                if (PatrickRect.Right > _graphics.PreferredBackBufferWidth || PatrickRect.Left < 0)
-                {
-                    PatrickSpeed.X *= -1;
 
-                }
                 SquidwardRect.X += (int)SquidwardSpeed.X;
                 SquidwardRect.Y += (int)SquidwardSpeed.Y;
+
+                if (PatrickRect.Right > 950)
+                {
+                    screen = Screen.Main2;
+                    SquidwardSpeed = new Vector2(0, 1);
+                }
 
             }
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -136,10 +137,24 @@ namespace SummativeAssignment
             GraphicsDevice.Clear(Color.Transparent);
             // TODO: Add your drawing code here
             _spriteBatch.Begin();
+
+            if (screen == Screen.Main2)
+            {
+                _spriteBatch.Draw(KrustyKrabTexture, new Rectangle(0, 0, 800, 500), Color.White);
+                _spriteBatch.Draw(SquidwardTexture, SquidwardRect, Color.White);
+                _spriteBatch.Draw(PatrickTexture, PatrickRect, Color.White);
+                _spriteBatch.Draw(SpongeBobTexture, SpongeBobRect, Color.White);
+                _spriteBatch.DrawString(SpongeBobIntroText, "Where did Patrick go?", new Vector2(0, 10), Color.Red);
+
+                _spriteBatch.DrawString(SpongeBobIntroText, "PRESS SPACE FOR OUTRO SCREEN", new Vector2(0, 50), Color.White);
+            }
+
+
+
             if (screen == Screen.Outro)
             {
                 _spriteBatch.Draw(KrustyKitchenTexture, new Rectangle(0, 0, 800, 500), Color.White);
-                _spriteBatch.DrawString(SpongeBobIntroText, "Something's up with Mr. Krabs", new Vector2(0, 10), Color.Red);
+                _spriteBatch.DrawString(SpongeBobIntroText, "Something's up with Mr. Krabs...", new Vector2(0, 10), Color.Red);
                 _spriteBatch.Draw(MrKrabsTexture, MrKrabsRect, Color.White);
                 _spriteBatch.Draw(KnifeTexture, KnifeRect, Color.White);
             }
@@ -155,7 +170,7 @@ namespace SummativeAssignment
             else if (screen == Screen.Main)
             {
                 _spriteBatch.Draw(KrustyKrabTexture, new Rectangle(0, 0, 800, 500), Color.White);
-                _spriteBatch.DrawString(SpongeBobIntroText, "PRESS SPACE FOR OUTRO SCREEN", new Vector2(0, 10), Color.White);
+                
                 _spriteBatch.Draw(SquidwardTexture, SquidwardRect, Color.White);
                 _spriteBatch.Draw(PatrickTexture, PatrickRect, Color.White);
                 _spriteBatch.Draw(SpongeBobTexture, SpongeBobRect, Color.White);
